@@ -243,31 +243,41 @@ def render_pdf(model_key, model):
     bot2 = draw_kv_table(c, margin + half + 6 * mm, table_y, half, model["mechanical"])
     cur_y = min(bot1, bot2) - 8 * mm
 
-    # ============ COMMON SPECS ============
-    section_label(c, margin, cur_y, "Common Specifications · Series")
+    # ============ DESIGN & STANDARDS ============
+    section_label(c, margin, cur_y, "Design & Standards")
     cur_y -= 4 * mm
-    # 3-col layout for common specs
-    col_w = (inner_w - 12 * mm) / 3
+    # 3-col layout, properly spaced rows
+    col_gap = 6 * mm
+    col_w = (inner_w - 2 * col_gap) / 3
     rows = [COMMON[i:i + 3] for i in range(0, len(COMMON), 3)]
-    line_h = 18
+    line_h = 30  # generous, so label + value have breathing room
+    cell_pad_x = 4 * mm
     box_top = cur_y
-    box_h = line_h * len(rows)
-    # Box background
+    box_h = line_h * len(rows) + 4 * mm  # extra top/bottom padding
+    box_y = box_top - box_h
+    # Outer box
     c.setFillColor(SOFT)
-    c.rect(margin, box_top - box_h, inner_w, box_h, fill=1, stroke=0)
+    c.rect(margin, box_y, inner_w, box_h, fill=1, stroke=0)
     c.setStrokeColor(LINE)
-    c.rect(margin, box_top - box_h, inner_w, box_h, fill=0, stroke=1)
+    c.rect(margin, box_y, inner_w, box_h, fill=0, stroke=1)
+    # Row dividers between rows
+    c.setStrokeColor(LINE)
+    c.setLineWidth(0.4)
+    for ri in range(1, len(rows)):
+        y_div = box_top - 2 * mm - ri * line_h
+        c.line(margin, y_div, margin + inner_w, y_div)
+    # Cells
     for ri, row in enumerate(rows):
         for ci, (k, v) in enumerate(row):
-            cx = margin + ci * (col_w + 6 * mm) + 4 * mm
-            cy = box_top - (ri + 1) * line_h + 5
+            cx = margin + ci * (col_w + col_gap) + cell_pad_x
+            cell_top = box_top - 2 * mm - ri * line_h
             c.setFillColor(INK3)
             c.setFont("Helvetica", 8)
-            c.drawString(cx, cy + 6, k)
+            c.drawString(cx, cell_top - 11, k)
             c.setFillColor(INK)
-            c.setFont("Helvetica-Bold", 9)
-            c.drawString(cx, cy - 4, v)
-    cur_y = box_top - box_h - 8 * mm
+            c.setFont("Helvetica-Bold", 10)
+            c.drawString(cx, cell_top - 23, v)
+    cur_y = box_y - 8 * mm
 
     # ============ NOTES ============
     section_label(c, margin, cur_y, "Notes")

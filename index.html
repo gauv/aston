@@ -522,12 +522,44 @@
     position: relative;
     overflow: hidden;
     min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .ps-photo::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), transparent 55%), linear-gradient(135deg, #eef0f3 0%, #c8ccd2 100%);
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,0.85), transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(31, 71, 136, 0.06), transparent 60%),
+      linear-gradient(135deg, #f0f2f5 0%, #d8dce2 100%);
+  }
+  .ps-photo::after {
+    content: '';
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 24px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.18) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .ps-photo img {
+    position: relative;
+    z-index: 2;
+    width: 86%;
+    max-width: 540px;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    filter: drop-shadow(0 24px 32px rgba(26, 29, 35, 0.22)) drop-shadow(0 8px 16px rgba(26, 29, 35, 0.10));
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  @media (hover: hover) {
+    .ps-photo:hover img { transform: translateY(-6px) scale(1.02); }
   }
   .ps-photo svg {
     position: relative;
@@ -1410,87 +1442,7 @@
           <span class="dot"></span>
           <span>Reference unit · WTD2-P</span>
         </div>
-        <svg viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-          <defs>
-            <radialGradient id="psBodyG" cx="0.4" cy="0.35">
-              <stop offset="0%" stop-color="#e8eaee"/>
-              <stop offset="50%" stop-color="#9ca3ad"/>
-              <stop offset="100%" stop-color="#4a5260"/>
-            </radialGradient>
-            <radialGradient id="psBodyG2" cx="0.5" cy="0.5">
-              <stop offset="0%" stop-color="#b8bdc6"/>
-              <stop offset="100%" stop-color="#5a6270"/>
-            </radialGradient>
-            <linearGradient id="psRingG" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0%" stop-color="#3d434c"/>
-              <stop offset="50%" stop-color="#7a8290"/>
-              <stop offset="100%" stop-color="#2a2f38"/>
-            </linearGradient>
-            <radialGradient id="psCenterG" cx="0.5" cy="0.5">
-              <stop offset="0%" stop-color="#5878a8"/>
-              <stop offset="100%" stop-color="#1f4788"/>
-            </radialGradient>
-          </defs>
-
-          <g transform="translate(250 300)">
-            <circle r="220" fill="url(#psBodyG)" stroke="#3d434c" stroke-width="1"/>
-            <circle r="212" fill="none" stroke="rgba(0,0,0,0.1)"/>
-            <circle r="200" fill="none" stroke="rgba(0,0,0,0.06)"/>
-
-            <g fill="#2a2f38">
-              <circle cx="0" cy="-205" r="6"/>
-              <circle cx="205" cy="0" r="6"/>
-              <circle cx="0" cy="205" r="6"/>
-              <circle cx="-205" cy="0" r="6"/>
-              <circle cx="145" cy="-145" r="6"/>
-              <circle cx="145" cy="145" r="6"/>
-              <circle cx="-145" cy="145" r="6"/>
-              <circle cx="-145" cy="-145" r="6"/>
-            </g>
-            <g fill="#1a1d23">
-              <circle cx="0" cy="-205" r="2.5"/>
-              <circle cx="205" cy="0" r="2.5"/>
-              <circle cx="0" cy="205" r="2.5"/>
-              <circle cx="-205" cy="0" r="2.5"/>
-              <circle cx="145" cy="-145" r="2.5"/>
-              <circle cx="145" cy="145" r="2.5"/>
-              <circle cx="-145" cy="145" r="2.5"/>
-              <circle cx="-145" cy="-145" r="2.5"/>
-            </g>
-
-            <circle r="180" fill="url(#psBodyG2)"/>
-            <circle r="172" fill="none" stroke="rgba(0,0,0,0.15)"/>
-            <circle r="160" fill="url(#psRingG)"/>
-            <circle r="155" fill="none" stroke="rgba(0,0,0,0.2)"/>
-            <circle r="135" fill="#2a2f38"/>
-
-            <g fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="0.8">
-              <circle r="128"/><circle r="120"/><circle r="112"/><circle r="104"/>
-              <circle r="96"/><circle r="88"/><circle r="80"/><circle r="72"/>
-            </g>
-            <g fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5">
-              <circle r="124"/><circle r="116"/><circle r="108"/><circle r="100"/>
-              <circle r="92"/><circle r="84"/><circle r="76"/>
-            </g>
-
-            <circle r="60" fill="#3d434c" stroke="#1a1d23" stroke-width="1"/>
-            <circle r="50" fill="#2a2f38"/>
-            <g fill="#1a1d23" stroke="#5a6270" stroke-width="0.5">
-              <circle cx="0" cy="-40" r="3"/>
-              <circle cx="40" cy="0" r="3"/>
-              <circle cx="0" cy="40" r="3"/>
-              <circle cx="-40" cy="0" r="3"/>
-              <circle cx="28" cy="-28" r="3"/>
-              <circle cx="28" cy="28" r="3"/>
-              <circle cx="-28" cy="28" r="3"/>
-              <circle cx="-28" cy="-28" r="3"/>
-            </g>
-            <circle r="22" fill="url(#psCenterG)"/>
-            <circle r="8" fill="#1a1d23"/>
-
-            <ellipse cx="-70" cy="-80" rx="80" ry="40" fill="rgba(255,255,255,0.12)" transform="rotate(-25)"/>
-          </g>
-        </svg>
+        <img src="images/wtd2-p.jpg" alt="WTD2-P permanent magnet gearless traction machine" loading="lazy" width="720" height="640">
       </div>
 
       <div class="ps-body">

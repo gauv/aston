@@ -1038,10 +1038,47 @@
     .product-grid { grid-template-columns: 1fr; }
     .ps-body { padding: 28px 20px; }
     .ps-name { font-size: 24px; }
-    .ps-photo { min-height: 280px; }
+    .ps-photo { min-height: 240px; aspect-ratio: 1/1; }
+    .ps-photo svg { max-width: 100%; max-height: 100%; }
     .common-specs { grid-template-columns: 1fr; }
     .common-spec:nth-child(odd) { border-right: none; }
     .common-spec { border-right: none; }
+    /* Spec table → stacked card layout (no horizontal scroll) */
+    .config-table-wrap { overflow-x: visible; border: none; }
+    .config-table { min-width: 0; border: none; display: block; }
+    .config-table thead { display: none; }
+    .config-table tbody, .config-table tr { display: block; width: 100%; }
+    .config-table tr {
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      padding: 4px 0;
+      margin-bottom: 12px;
+      background: var(--bg);
+    }
+    .config-table tr:last-child { margin-bottom: 0; }
+    .config-table td {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 14px;
+      border: none !important;
+      font-size: 14px;
+    }
+    .config-table td::before {
+      content: attr(data-label);
+      color: var(--ink-3);
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+    .config-table td.config-name {
+      background: var(--bg-soft);
+      border-bottom: 1px solid var(--line) !important;
+      font-size: 15px;
+    }
     .feature { padding: 28px 0; }
     .location-card { padding: 24px; }
     .footer { padding: 48px 20px 24px; }
@@ -1478,18 +1515,18 @@
             </thead>
             <tbody>
               <tr>
-                <td class="config-name">WTD2-P400-100D</td>
-                <td class="config-cap">400 / 408 kg</td>
-                <td>2.7 kW</td>
-                <td>8 A</td>
-                <td>217 N·m</td>
+                <td class="config-name" data-label="Model">WTD2-P400-100D</td>
+                <td class="config-cap" data-label="Capacity">400 / 408 kg</td>
+                <td data-label="Power">2.7 kW</td>
+                <td data-label="Current">8 A</td>
+                <td data-label="Torque">217 N·m</td>
               </tr>
               <tr>
-                <td class="config-name">WTD2-P544-100D</td>
-                <td class="config-cap">544 kg</td>
-                <td>3.6 kW</td>
-                <td>10 A</td>
-                <td>290 N·m</td>
+                <td class="config-name" data-label="Model">WTD2-P544-100D</td>
+                <td class="config-cap" data-label="Capacity">544 kg</td>
+                <td data-label="Power">3.6 kW</td>
+                <td data-label="Current">10 A</td>
+                <td data-label="Torque">290 N·m</td>
               </tr>
             </tbody>
           </table>

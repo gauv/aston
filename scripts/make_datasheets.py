@@ -166,14 +166,15 @@ def render_pdf(model_key, model):
     header_h = 14 * mm
     c.setFillColor(INK)
     c.rect(0, PH - header_h, PW, header_h, fill=1, stroke=0)
-    # Brand mark
+    # Brand mark — measure width so the tagline always sits with consistent gap
+    brand_y = PH - header_h + 4.5 * mm
     c.setFillColor(white)
     c.setFont("Helvetica-Bold", 13)
-    c.drawString(margin, PH - header_h + 4.5 * mm, "ASTON")
+    c.drawString(margin, brand_y, "ASTON")
+    brand_w = c.stringWidth("ASTON", "Helvetica-Bold", 13)
     c.setFont("Helvetica", 9)
     c.setFillColor(HexColor("#9aa0aa"))
-    c.drawString(margin + 16 * mm, PH - header_h + 4.5 * mm,
-                 "Gearless Traction Systems")
+    c.drawString(margin + brand_w + 8, brand_y, "Gearless Traction Systems")
     # Right-side: doc metadata stack
     c.setFont("Helvetica", 8)
     c.setFillColor(white)
@@ -189,26 +190,26 @@ def render_pdf(model_key, model):
     c.rect(0, PH - header_h - 2, PW, 2, fill=1, stroke=0)
 
     # ============ TITLE SECTION ============
-    cur_y = PH - header_h - 12 * mm
+    cur_y = PH - header_h - 14 * mm
     c.setFillColor(ACCENT)
     c.setFont("Helvetica-Bold", 8)
     c.drawString(margin, cur_y, "WTD2-P SERIES · PERMANENT MAGNET GEARLESS")
-    cur_y -= 7 * mm
+    cur_y -= 10 * mm
     c.setFillColor(INK)
     c.setFont("Helvetica-Bold", 22)
     c.drawString(margin, cur_y, model["name"])
-    # Capacity pill on the right
+    # Capacity pill on the right, vertically centered with title
     pill_text = f"{model['capacity']}  ·  {model['speed']}"
     c.setFont("Helvetica-Bold", 9)
-    pill_w = c.stringWidth(pill_text, "Helvetica-Bold", 9) + 14
-    pill_h = 18
+    pill_w = c.stringWidth(pill_text, "Helvetica-Bold", 9) + 16
+    pill_h = 20
     pill_x = PW - margin - pill_w
     pill_y = cur_y - 2
     c.setFillColor(ACCENT_SOFT)
     c.roundRect(pill_x, pill_y, pill_w, pill_h, 2, fill=1, stroke=0)
     c.setFillColor(ACCENT)
-    c.drawString(pill_x + 7, pill_y + 5, pill_text)
-    cur_y -= 5 * mm
+    c.drawString(pill_x + 8, pill_y + 6, pill_text)
+    cur_y -= 8 * mm
     c.setFillColor(INK3)
     c.setFont("Helvetica", 10.5)
     c.drawString(
@@ -218,7 +219,7 @@ def render_pdf(model_key, model):
     )
 
     # ============ HERO: PHOTO + DRAWING ============
-    cur_y -= 6 * mm
+    cur_y -= 9 * mm
     hero_y_top = cur_y
     hero_h = 70 * mm
     half = (inner_w - 6 * mm) / 2
@@ -348,12 +349,14 @@ def render_pdf(model_key, model):
     c.rect(0, 0, PW, foot_h, fill=1, stroke=0)
     c.setStrokeColor(LINE)
     c.line(0, foot_h, PW, foot_h)
+    foot_y = foot_h - 5 * mm
     c.setFillColor(INK)
     c.setFont("Helvetica-Bold", 9)
-    c.drawString(margin, foot_h - 5 * mm, "ASTON")
+    c.drawString(margin, foot_y, "ASTON")
+    foot_brand_w = c.stringWidth("ASTON", "Helvetica-Bold", 9)
     c.setFillColor(INK3)
     c.setFont("Helvetica", 8)
-    c.drawString(margin + 14 * mm, foot_h - 5 * mm,
+    c.drawString(margin + foot_brand_w + 6, foot_y,
                  "Gearless Traction Systems  ·  Operations: India & China")
     c.setFillColor(INK3)
     c.setFont("Helvetica", 8)

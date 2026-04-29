@@ -677,20 +677,17 @@
   /* Common specs grid */
   .common-specs {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 0;
-    border: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    background: var(--bg);
   }
   .common-spec {
-    padding: 14px 16px;
+    padding: 16px 18px;
+    border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     font-size: 13.5px;
-  }
-  .common-spec:nth-child(odd) {
-    border-right: 1px solid var(--line);
-  }
-  .common-spec:nth-last-child(-n+2) {
-    border-bottom: none;
   }
   .common-spec .k {
     color: var(--ink-3);
@@ -713,6 +710,103 @@
     transition: gap 0.2s;
   }
   .ps-cta:hover { gap: 12px; text-decoration: none; }
+
+  /* ============ MODEL DETAIL CARDS ============ */
+  .models-block { margin-top: 48px; }
+  .models-label {
+    font-size: 12px;
+    color: var(--ink-3);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .model-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .model-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .model-card-head {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .model-name {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .model-pill {
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .model-drawing {
+    background: #fafbfc;
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+  }
+  .model-drawing img {
+    width: 100%;
+    max-width: 540px;
+    height: auto;
+    display: block;
+  }
+  .model-specs {
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .spec-block-title {
+    font-size: 11px;
+    color: var(--ink-3);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .spec-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line-2);
+    font-size: 13.5px;
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row .k { color: var(--ink-3); }
+  .spec-row .v { color: var(--ink); font-weight: 500; text-align: right; }
+
+  @media (max-width: 980px) {
+    .model-cards { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .model-card-head { padding: 20px; }
+    .model-drawing { padding: 20px; min-height: 180px; }
+    .model-specs { padding: 20px; grid-template-columns: 1fr; gap: 20px; }
+  }
 
   /* ============ ENGINEERING ============ */
   .engineering {
@@ -1043,6 +1137,7 @@
     .roadmap { grid-template-columns: 1fr; gap: 24px; }
     .footer-top { grid-template-columns: 1fr 1fr; }
     .util-bar .util-links { display: none; }
+    .common-specs { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
     section { padding: 56px 20px; }
@@ -1073,8 +1168,6 @@
     .ps-photo { min-height: 240px; aspect-ratio: 1/1; }
     .ps-photo svg { max-width: 100%; max-height: 100%; }
     .common-specs { grid-template-columns: 1fr; }
-    .common-spec:nth-child(odd) { border-right: none; }
-    .common-spec { border-right: none; }
     /* Spec table → stacked card layout (no horizontal scroll) */
     .config-table-wrap { overflow-x: visible; border: none; }
     .config-table { min-width: 0; border: none; display: block; }
@@ -1449,99 +1542,124 @@
         <div class="ps-series">WTD2-P Series</div>
         <h3 class="ps-name">Permanent Magnet Gearless Traction Machine</h3>
         <p class="ps-tag">
-          A compact, permanent magnet synchronous machine designed for residential and small commercial elevators. Available in two configurations for different load profiles.
+          A compact, permanent magnet synchronous machine designed for residential and small commercial elevators. Two configurations sharing a common Ø320 mm sheave platform.
         </p>
-
-        <div class="config-section">
-          <div class="config-label">Available Configurations</div>
-          <div class="config-table-wrap">
-          <table class="config-table">
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th>Capacity</th>
-                <th>Power</th>
-                <th>Current</th>
-                <th>Torque</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="config-name" data-label="Model">WTD2-P400-100D</td>
-                <td class="config-cap" data-label="Capacity">400 / 408 kg</td>
-                <td data-label="Power">2.7 kW</td>
-                <td data-label="Current">8 A</td>
-                <td data-label="Torque">217 N·m</td>
-              </tr>
-              <tr>
-                <td class="config-name" data-label="Model">WTD2-P544-100D</td>
-                <td class="config-cap" data-label="Capacity">544 kg</td>
-                <td data-label="Power">3.6 kW</td>
-                <td data-label="Current">10 A</td>
-                <td data-label="Torque">290 N·m</td>
-              </tr>
-            </tbody>
-          </table>
-          </div>
-        </div>
-
-        <div class="config-section" style="margin-bottom: 0;">
-          <div class="config-label">Common Specifications</div>
-          <div class="common-specs">
-            <div class="common-spec">
-              <div class="k">Rated voltage</div>
-              <div class="v">AC 380 V · 50/60 Hz</div>
-            </div>
-            <div class="common-spec">
-              <div class="k">Brake voltage</div>
-              <div class="v">DC 110 V · single coil</div>
-            </div>
-            <div class="common-spec">
-              <div class="k">Static shaft load</div>
-              <div class="v">2500 kg</div>
-            </div>
-            <div class="common-spec">
-              <div class="k">Duty cycle</div>
-              <div class="v">S5 – 40%</div>
-            </div>
-            <div class="common-spec">
-              <div class="k">Main sheave</div>
-              <div class="v">Ø 320 mm</div>
-            </div>
-            <div class="common-spec">
-              <div class="k">Roping</div>
-              <div class="v">4 × Ø8 × 12 · ratio 2:1</div>
-            </div>
-            <div class="common-spec">
-              <div class="k">Groove profile</div>
-              <div class="v">Undercut U · β=90° γ=30°</div>
-            </div>
-            <div class="common-spec">
-              <div class="k">Motor type</div>
-              <div class="v">PM synchronous · 20-pole</div>
-            </div>
-            <div class="common-spec">
-              <div class="k">Rated speed</div>
-              <div class="v">119 rpm · 19.9 Hz</div>
-            </div>
-            <div class="common-spec">
-              <div class="k">Elevator speed</div>
-              <div class="v">1.0 m/s</div>
-            </div>
-            <div class="common-spec">
-              <div class="k">Insulation / Protection</div>
-              <div class="v">Class F · IP41</div>
-            </div>
-            <div class="common-spec">
-              <div class="k">Travelling height</div>
-              <div class="v">≤ 90 m</div>
-            </div>
-          </div>
-        </div>
-
         <a href="#contact" class="ps-cta">Request full datasheet →</a>
       </div>
     </div>
+
+    <!-- Model engineering drawings + per-model specs -->
+    <div class="models-block">
+      <div class="models-label">Available Models · Engineering Outline & Specifications</div>
+      <div class="model-cards">
+
+        <div class="model-card">
+          <div class="model-card-head">
+            <div class="model-name">WTD2-P400-100D</div>
+            <div class="model-pill">400 / 408 kg · 1.0 m/s</div>
+          </div>
+          <div class="model-drawing">
+            <img src="images/drawing-wtd2-p400-100d.png" alt="WTD2-P400-100D outline drawing — front and side views with dimensions" loading="lazy">
+          </div>
+          <div class="model-specs">
+            <div class="spec-block">
+              <div class="spec-block-title">Electrical</div>
+              <div class="spec-row"><span class="k">Rated power</span><span class="v">2.7 kW</span></div>
+              <div class="spec-row"><span class="k">Rated current</span><span class="v">8 A</span></div>
+              <div class="spec-row"><span class="k">Rated speed</span><span class="v">119 rpm</span></div>
+              <div class="spec-row"><span class="k">Frequency</span><span class="v">19.9 Hz</span></div>
+              <div class="spec-row"><span class="k">Rated torque</span><span class="v">217 N·m</span></div>
+              <div class="spec-row"><span class="k">Poles</span><span class="v">20</span></div>
+            </div>
+            <div class="spec-block">
+              <div class="spec-block-title">Mechanical</div>
+              <div class="spec-row"><span class="k">Net weight</span><span class="v">140 kg</span></div>
+              <div class="spec-row"><span class="k">Total length</span><span class="v">454.7 mm</span></div>
+              <div class="spec-row"><span class="k">Overall height</span><span class="v">362 mm</span></div>
+              <div class="spec-row"><span class="k">Mounting height</span><span class="v">165 mm</span></div>
+              <div class="spec-row"><span class="k">Mounting holes</span><span class="v">4 × Ø18 @ 250 mm</span></div>
+              <div class="spec-row"><span class="k">Sheave</span><span class="v">Ø 320 mm</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-card-head">
+            <div class="model-name">WTD2-P544-100D</div>
+            <div class="model-pill">544 kg · 1.0 m/s</div>
+          </div>
+          <div class="model-drawing">
+            <img src="images/drawing-wtd2-p544-100d.png" alt="WTD2-P544-100D outline drawing — front and side views with dimensions" loading="lazy">
+          </div>
+          <div class="model-specs">
+            <div class="spec-block">
+              <div class="spec-block-title">Electrical</div>
+              <div class="spec-row"><span class="k">Rated power</span><span class="v">3.6 kW</span></div>
+              <div class="spec-row"><span class="k">Rated current</span><span class="v">10 A</span></div>
+              <div class="spec-row"><span class="k">Rated speed</span><span class="v">119 rpm</span></div>
+              <div class="spec-row"><span class="k">Frequency</span><span class="v">19.9 Hz</span></div>
+              <div class="spec-row"><span class="k">Rated torque</span><span class="v">290 N·m</span></div>
+              <div class="spec-row"><span class="k">Poles</span><span class="v">20</span></div>
+            </div>
+            <div class="spec-block">
+              <div class="spec-block-title">Mechanical</div>
+              <div class="spec-row"><span class="k">Net weight</span><span class="v">200 kg</span></div>
+              <div class="spec-row"><span class="k">Total length</span><span class="v">534.7 mm</span></div>
+              <div class="spec-row"><span class="k">Overall height</span><span class="v">384.5 mm</span></div>
+              <div class="spec-row"><span class="k">Mounting height</span><span class="v">165 mm</span></div>
+              <div class="spec-row"><span class="k">Mounting holes</span><span class="v">4 × Ø18 @ 250 mm</span></div>
+              <div class="spec-row"><span class="k">Sheave</span><span class="v">Ø 320 mm</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="models-label" style="margin-top: 48px;">Common Specifications</div>
+      <div class="common-specs">
+        <div class="common-spec">
+          <div class="k">Rated voltage</div>
+          <div class="v">AC 380 V · 50/60 Hz</div>
+        </div>
+        <div class="common-spec">
+          <div class="k">Brake voltage</div>
+          <div class="v">DC 110 V · single coil</div>
+        </div>
+        <div class="common-spec">
+          <div class="k">Static shaft load</div>
+          <div class="v">2500 kg</div>
+        </div>
+        <div class="common-spec">
+          <div class="k">Duty cycle</div>
+          <div class="v">S5 – 40%</div>
+        </div>
+        <div class="common-spec">
+          <div class="k">Roping</div>
+          <div class="v">4 × Ø8 × 12 · ratio 2:1</div>
+        </div>
+        <div class="common-spec">
+          <div class="k">Groove profile</div>
+          <div class="v">Undercut U · β=90° γ=30°</div>
+        </div>
+        <div class="common-spec">
+          <div class="k">Motor type</div>
+          <div class="v">PM synchronous · 20-pole</div>
+        </div>
+        <div class="common-spec">
+          <div class="k">Wrap</div>
+          <div class="v">Single</div>
+        </div>
+        <div class="common-spec">
+          <div class="k">Insulation / Protection</div>
+          <div class="v">Class F · IP41</div>
+        </div>
+        <div class="common-spec">
+          <div class="k">Travelling height</div>
+          <div class="v">≤ 90 m</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 

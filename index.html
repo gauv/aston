@@ -28,6 +28,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  html, body { overflow-x: hidden; }
 
   body {
     font-family: 'Inter', -apple-system, sans-serif;
@@ -513,6 +514,7 @@
     background: var(--bg);
     border: 1px solid var(--line);
   }
+  .product-showcase > * { min-width: 0; }
 
   .ps-photo {
     background: var(--bg-soft);
@@ -559,7 +561,9 @@
     padding: 48px;
     display: flex;
     flex-direction: column;
+    min-width: 0;
   }
+  .ps-body > * { min-width: 0; max-width: 100%; }
   .ps-series {
     font-size: 12px;
     color: var(--accent);

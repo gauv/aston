@@ -2,6 +2,7 @@
 Generate product datasheet PDFs for the WTD2-P range.
 Run: python3 scripts/make_datasheets.py
 """
+from datetime import date
 from pathlib import Path
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.colors import HexColor, white
@@ -13,6 +14,17 @@ ROOT = Path(__file__).resolve().parent.parent
 IMG = ROOT / "images"
 OUT = ROOT / "datasheets"
 OUT.mkdir(exist_ok=True)
+
+REVISION = "1.0"
+ISSUED = date.today().strftime("%B %Y")  # e.g. "April 2026"
+
+STANDARDS = [
+    ("EN 81",     "European elevator safety"),
+    ("CE",        "Compliant configurations"),
+    ("IEC 60034", "Rotating electrical machines"),
+    ("Class F",   "Insulation rating"),
+    ("IP41",      "Ingress protection"),
+]
 
 # Brand colors (matching the website)
 INK = HexColor("#1a1d23")
@@ -126,18 +138,24 @@ def draw_kv_table(c, x, y, w, rows, row_h=14 * mm / 14 * 14, label_w=None):
     return cur_y
 
 
-def section_label(c, x, y, text):
+def section_label(c, x, y, text, accent_w=14):
+    """Section label with a small accent stripe underneath."""
     c.setFillColor(INK3)
     c.setFont("Helvetica-Bold", 8)
     c.drawString(x, y, text.upper())
+    c.setFillColor(ACCENT)
+    c.rect(x, y - 4, accent_w, 1.5, fill=1, stroke=0)
 
 
 def render_pdf(model_key, model):
     pdf_path = OUT / f"{model_key}.pdf"
+    doc_no = f"DS-{model['name']}".upper()
     c = canvas.Canvas(str(pdf_path), pagesize=A4)
     c.setTitle(f"{model['name']} · ASTON Gearless Traction Machine")
     c.setAuthor("ASTON")
     c.setSubject("Technical datasheet")
+    c.setKeywords("elevator, traction, gearless, permanent magnet, "
+                  + model['name'])
 
     # Page margins
     margin = 18 * mm
@@ -156,11 +174,19 @@ def render_pdf(model_key, model):
     c.setFillColor(HexColor("#9aa0aa"))
     c.drawString(margin + 16 * mm, PH - header_h + 4.5 * mm,
                  "Gearless Traction Systems")
-    # Right-side: doc type
-    c.setFont("Helvetica", 9)
+    # Right-side: doc metadata stack
+    c.setFont("Helvetica", 8)
+    c.setFillColor(white)
+    c.drawRightString(PW - margin, PH - header_h + 7 * mm,
+                      "TECHNICAL DATASHEET")
+    c.setFont("Helvetica", 7.5)
     c.setFillColor(HexColor("#9aa0aa"))
-    c.drawRightString(PW - margin, PH - header_h + 4.5 * mm,
-                      "Technical Datasheet")
+    c.drawRightString(PW - margin, PH - header_h + 3 * mm,
+                      f"{doc_no}  ·  Rev {REVISION}  ·  {ISSUED}")
+
+    # Accent stripe directly under header
+    c.setFillColor(ACCENT)
+    c.rect(0, PH - header_h - 2, PW, 2, fill=1, stroke=0)
 
     # ============ TITLE SECTION ============
     cur_y = PH - header_h - 12 * mm
@@ -279,24 +305,42 @@ def render_pdf(model_key, model):
             c.drawString(cx, cell_top - 23, v)
     cur_y = box_y - 8 * mm
 
+    # ============ STANDARDS & CERTIFICATIONS ============
+    section_label(c, margin, cur_y, "Standards & Certifications")
+    cur_y -= 5 * mm
+    badge_w = (inner_w - 4 * 4 * mm) / len(STANDARDS)
+    badge_h = 14 * mm
+    for i, (code, desc) in enumerate(STANDARDS):
+        bx = margin + i * (badge_w + 4 * mm)
+        by = cur_y - badge_h
+        # Badge box
+        c.setFillColor(white)
+        c.setStrokeColor(LINE)
+        c.setLineWidth(0.6)
+        c.rect(bx, by, badge_w, badge_h, fill=1, stroke=1)
+        # Code
+        c.setFillColor(INK)
+        c.setFont("Helvetica-Bold", 11)
+        c.drawString(bx + 4 * mm, by + badge_h - 6 * mm, code)
+        # Description
+        c.setFillColor(INK3)
+        c.setFont("Helvetica", 7)
+        c.drawString(bx + 4 * mm, by + 3 * mm, desc)
+    cur_y -= badge_h + 6 * mm
+
     # ============ NOTES ============
     section_label(c, margin, cur_y, "Notes")
     cur_y -= 4 * mm
     c.setFillColor(INK2)
-    c.setFont("Helvetica", 8.5)
+    c.setFont("Helvetica", 8)
     notes = [
-        "• Specifications stated at rated voltage and rated load. Operating "
-        "conditions outside the rated envelope may shift performance.",
-        "• Roping ratio 2:1, single wrap, 4 × Ø8 × 12 mm steel rope. "
-        "Groove geometry: Undercut U, β = 90°, γ = 30°.",
-        "• Designed and manufactured to international elevator standards "
-        "(EN 81 family, CE-compliant configurations available on request).",
-        "• Drawings dimensioned in millimetres. Tolerances ±0.5 mm on "
-        "mounting hole spacing.",
+        "Specifications stated at rated voltage and rated load. Operating conditions outside the rated envelope may shift performance.",
+        "Drawings dimensioned in millimetres. Tolerances ±0.5 mm on mounting hole spacing. Refer to engineering for full GA drawings.",
+        "Configurations beyond the published baseline (alternative voltages, groove geometries, sheave diameters) available on request.",
     ]
     for n in notes:
-        c.drawString(margin, cur_y, n)
-        cur_y -= 4 * mm
+        c.drawString(margin, cur_y, "•  " + n)
+        cur_y -= 3.5 * mm
 
     # ============ FOOTER ============
     foot_h = 14 * mm
@@ -318,8 +362,9 @@ def render_pdf(model_key, model):
     c.setFillColor(HexColor("#9aa0aa"))
     c.setFont("Helvetica", 7)
     c.drawString(margin, foot_h - 9 * mm,
-                 "© ASTON. Specifications subject to change without notice. "
-                 "Issued for technical evaluation.")
+                 f"© ASTON. {doc_no}  ·  Rev {REVISION}  ·  {ISSUED}.  "
+                 "Specifications subject to change without notice. Issued for technical evaluation.")
+    c.drawRightString(PW - margin, foot_h - 9 * mm, "Page 1 of 1")
 
     c.showPage()
     c.save()

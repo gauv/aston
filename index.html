@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aston — Gearless Traction Systems for Elevators</title>
+<meta name="description" content="Permanent magnet gearless traction machines for elevator OEMs and installers. Manufactured to international standards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f5f6f8;
+    --bg-tint: #fafbfc;
+    --ink: #1a1d23;
+    --ink-2: #3d434c;
+    --ink-3: #6b7280;
+    --ink-4: #9aa0aa;
+    --line: #e5e7eb;
+    --line-2: #f0f1f4;
+    --accent: #1f4788;
+    --accent-soft: #eaeff7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ============ TOP UTILITY BAR ============ */
+  .util-bar {
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+  .util-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 9px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .util-bar .util-links { display: flex; gap: 24px; }
+  .util-bar a { color: var(--ink-3); }
+  .util-bar a:hover { color: var(--ink); text-decoration: none; }
+
+  /* ============ NAV ============ */
+  nav {
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .logo {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .logo .mark {
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .logo .tag {
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--ink-3);
+    padding-left: 12px;
+    border-left: 1px solid var(--line);
+  }
+  .logo:hover { text-decoration: none; }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--ink-2);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .nav-links a:hover {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom-color: var(--accent);
+  }
+
+  .nav-cta {
+    background: var(--ink);
+    color: white;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .nav-cta:hover {
+    background: var(--accent);
+    text-decoration: none;
+  }
+
+  .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+
+  /* ============ HERO ============ */
+  .hero {
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 100px 32px 80px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  h1.hero-title {
+    font-weight: 600;
+    font-size: clamp(36px, 4.4vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--ink-2);
+    max-width: 540px;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  .hero-supporting {
+    font-size: 15px;
+    color: var(--ink-3);
+    max-width: 540px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+  }
+  .btn-primary, .btn-secondary {
+    padding: 13px 22px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.15s;
+    border-radius: 2px;
+    border: 1px solid;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+  }
+  .btn-primary:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    text-decoration: none;
+  }
+  .btn-secondary {
+    background: white;
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .btn-secondary:hover {
+    border-color: var(--ink-3);
+    text-decoration: none;
+  }
+  .btn-arrow { font-size: 14px; }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+    max-width: 600px;
+  }
+  .hero-stats .stat {
+    padding-right: 20px;
+  }
+  .hero-stats .stat:not(:first-child) {
+    padding-left: 20px;
+    border-left: 1px solid var(--line);
+  }
+  .stat-num {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .stat-num .unit {
+    font-size: 14px;
+    color: var(--ink-3);
+    font-weight: 400;
+    margin-left: 2px;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.4;
+  }
+
+  /* Hero photo slot - now transparent, floats on page */
+  .hero-photo {
+    aspect-ratio: 4/5;
+    position: relative;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-photo svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    filter: drop-shadow(0 30px 40px rgba(26, 29, 35, 0.18)) drop-shadow(0 10px 20px rgba(26, 29, 35, 0.08));
+  }
+
+  /* Rotation is now SVG-native (animateTransform) — no CSS animation needed */
+  /* Pause on reduced-motion preference - accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-photo svg animateTransform {
+      display: none;
+    }
+  }
+
+  .hero-photo-label {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 10px 18px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 12.5px;
+    color: var(--ink-3);
+    z-index: 3;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    white-space: nowrap;
+  }
+  .hero-photo-label strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .hero-photo-label .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ============ STANDARDS BAR ============ */
+  .standards {
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--line);
+    padding: 32px 32px;
+  }
+  .standards-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .standards-label {
+    font-size: 13px;
+    color: var(--ink-3);
+    font-weight: 500;
+    flex-shrink: 0;
+    max-width: 220px;
+    line-height: 1.4;
+  }
+  .standards-list {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 1;
+  }
+  .standards-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink-2);
+    font-size: 14px;
+  }
+  .standards-item .code {
+    border: 1.5px solid var(--ink-2);
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    border-radius: 2px;
+  }
+
+  /* ============ SECTION BASE ============ */
+  section {
+    padding: 100px 32px;
+  }
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-weight: 600;
+    font-size: clamp(28px, 3.2vw, 40px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 20px;
+    max-width: 760px;
+  }
+
+  .section-intro {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 680px;
+  }
+
+  .section-head {
+    margin-bottom: 64px;
+  }
+
+  /* ============ ABOUT ============ */
+  .about {
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-narrative p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-2);
+    margin-bottom: 18px;
+  }
+  .about-narrative p strong { color: var(--ink); font-weight: 600; }
+  .about-narrative p:last-child { margin-bottom: 0; }
+
+  .pillars {
+    display: flex;
+    flex-direction: column;
+  }
+  .pillar {
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+  }
+  .pillar:last-child { border-bottom: 1px solid var(--line); }
+  .pillar .num {
+    font-size: 12px;
+    color: var(--ink-3);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .pillar h4 {
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .pillar p {
+    color: var(--ink-2);
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  /* ============ PRODUCTS ============ */
+  .products {
+    background: var(--bg-tint);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .product-showcase {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 0;
+    background: var(--bg);
+    border: 1px solid var(--line);
+  }
+
+  .ps-photo {
+    background: var(--bg-soft);
+    border-right: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    min-height: 520px;
+  }
+  .ps-photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), transparent 55%), linear-gradient(135deg, #eef0f3 0%, #c8ccd2 100%);
+  }
+  .ps-photo svg {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+  }
+  .ps-photo-label {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--ink-2);
+    z-index: 3;
+    border-radius: 2px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .ps-photo-label .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .ps-body {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+  }
+  .ps-series {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .ps-name {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .ps-tag {
+    font-size: 15.5px;
+    color: var(--ink-2);
+    margin-bottom: 32px;
+    line-height: 1.55;
+  }
+
+  /* Configuration table */
+  .config-section {
+    margin-bottom: 28px;
+  }
+  .config-label {
+    font-size: 12px;
+    color: var(--ink-3);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .config-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--line);
+    font-size: 13.5px;
+  }
+  .config-table thead th {
+    background: var(--bg-soft);
+    text-align: left;
+    padding: 11px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-2);
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid var(--line);
+  }
+  .config-table thead th:not(:last-child) {
+    border-right: 1px solid var(--line);
+  }
+  .config-table tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .config-table tbody td:not(:last-child) {
+    border-right: 1px solid var(--line);
+  }
+  .config-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .config-table .config-name {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .config-table .config-cap {
+    font-weight: 500;
+  }
+
+  /* Common specs grid */
+  .common-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+  }
+  .common-spec {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13.5px;
+  }
+  .common-spec:nth-child(odd) {
+    border-right: 1px solid var(--line);
+  }
+  .common-spec:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+  .common-spec .k {
+    color: var(--ink-3);
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  .common-spec .v {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .ps-cta {
+    margin-top: 32px;
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.2s;
+  }
+  .ps-cta:hover { gap: 12px; text-decoration: none; }
+
+  /* ============ ENGINEERING ============ */
+  .engineering {
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .feature {
+    padding: 32px 32px 32px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .feature:nth-child(odd) {
+    padding-right: 40px;
+    border-right: 1px solid var(--line);
+  }
+  .feature:nth-child(even) {
+    padding-left: 40px;
+  }
+  .feature .num {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+  .feature h4 {
+    font-weight: 600;
+    font-size: 19px;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .feature p {
+    color: var(--ink-2);
+    font-size: 14.5px;
+    line-height: 1.65;
+    max-width: 460px;
+  }
+
+  /* ============ GLOBAL ============ */
+  .global {
+    background: var(--bg-tint);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .global-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .location-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 36px;
+  }
+
+  .location-status {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .location-status.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .location-status.planned {
+    background: #fff5e6;
+    color: #b35900;
+  }
+
+  .location-card h3 {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .location-card .region {
+    color: var(--ink-3);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .location-card p {
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  .location-meta {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .location-meta .item .k {
+    font-size: 12px;
+    color: var(--ink-3);
+    margin-bottom: 4px;
+  }
+  .location-meta .item .v {
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ============ VISION ============ */
+  .vision {
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    border-top: 1px solid var(--line);
+    padding-top: 40px;
+  }
+  .roadmap-item {
+    border-left: 2px solid var(--line);
+    padding-left: 20px;
+  }
+  .roadmap-item.current { border-left-color: var(--accent); }
+
+  .roadmap-phase {
+    font-size: 12px;
+    color: var(--ink-3);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .roadmap-item.current .roadmap-phase { color: var(--accent); }
+  .roadmap-title {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .roadmap-desc {
+    font-size: 14.5px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact {
+    background: var(--bg-tint);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .contact-info p {
+    color: var(--ink-2);
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 32px;
+  }
+
+  .contact-channels {
+    border-top: 1px solid var(--line);
+  }
+  .ch-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .ch-key { color: var(--ink-3); }
+  .ch-val { color: var(--ink); }
+
+  .form {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 36px;
+  }
+  .form h4 {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .form-intro {
+    color: var(--ink-3);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .form-group { display: flex; flex-direction: column; margin-bottom: 16px; }
+  .form-label {
+    font-size: 13px;
+    color: var(--ink-2);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .form-label .req { color: #c0392b; }
+  .form-input, .form-select, .form-textarea {
+    background: white;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 2px;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .form-textarea { resize: vertical; min-height: 100px; }
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3 5L6 8L9 5' stroke='%236b7280' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+
+  .form-submit {
+    width: 100%;
+    background: var(--ink);
+    color: white;
+    border: none;
+    padding: 14px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.15s;
+    border-radius: 2px;
+  }
+  .form-submit:hover { background: var(--accent); }
+  .form-note {
+    font-size: 12px;
+    color: var(--ink-3);
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    padding: 64px 32px 32px;
+  }
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--line);
+  }
+  .footer-brand .logo { margin-bottom: 20px; }
+  .footer-brand p {
+    color: var(--ink-3);
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 360px;
+  }
+  .footer-col h5 {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a {
+    color: var(--ink-3);
+    font-size: 14px;
+  }
+  .footer-col a:hover { color: var(--ink); text-decoration: none; }
+
+  .footer-bottom {
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--ink-3);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 980px) {
+    .hero-inner, .about-grid, .global-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-photo { aspect-ratio: 16/10; max-width: 600px; }
+    .product-showcase { grid-template-columns: 1fr; }
+    .ps-photo { border-right: none; border-bottom: 1px solid var(--line); min-height: 360px; }
+    .ps-body { padding: 36px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .feature:nth-child(odd) { padding-right: 0; border-right: none; }
+    .feature:nth-child(even) { padding-left: 0; }
+    .roadmap { grid-template-columns: 1fr; gap: 24px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .util-bar .util-links { display: none; }
+  }
+  @media (max-width: 640px) {
+    section { padding: 64px 20px; }
+    .nav-inner { padding: 16px 20px; gap: 16px; }
+    .nav-links { display: none; }
+    .menu-toggle { display: flex; }
+    .logo .tag { display: none; }
+    .hero-inner { padding: 56px 20px 56px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; row-gap: 24px; }
+    .hero-stats .stat:nth-child(3) { padding-left: 0; border-left: none; }
+    .product-grid { grid-template-columns: 1fr; }
+    .ps-body { padding: 28px; }
+    .common-specs { grid-template-columns: 1fr; }
+    .common-spec:nth-child(odd) { border-right: none; }
+    .common-spec { border-right: none; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .standards-list { gap: 20px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .form { padding: 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    .ch-item { grid-template-columns: 100px 1fr; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ UTILITY BAR ============ -->
+<div class="util-bar">
+  <div class="util-inner">
+    <div>Operations: India · China</div>
+    <div class="util-links">
+      <a href="#contact">Technical Support</a>
+      <a href="#contact">Distributor Inquiries</a>
+      <a href="mailto:info@astontraction.com">info@astontraction.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="mark">ASTON</span>
+      <span class="tag">Gearless Traction Systems</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#engineering">Engineering</a></li>
+      <li><a href="#global">Global Presence</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Become a Partner</a>
+    <button class="menu-toggle" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 7h16M3 11h16M3 15h16" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="padding: 0;">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Permanent Magnet Gearless Traction</div>
+      <h1 class="hero-title">Precision power for vertical mobility.</h1>
+      <p class="hero-sub">
+        Permanent magnet gearless traction machines engineered for reliable, energy-efficient elevator performance.
+      </p>
+      <p class="hero-supporting">
+        Designed to international standards. Built through global manufacturing partnerships. Scaled for the next generation of buildings.
+      </p>
+      <div class="hero-actions">
+        <a href="#products" class="btn-primary">Explore Products <span class="btn-arrow">→</span></a>
+        <a href="#contact" class="btn-secondary">Partner With Us <span class="btn-arrow">→</span></a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">544<span class="unit">kg</span></div>
+          <div class="stat-label">Maximum capacity</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2500<span class="unit">kg</span></div>
+          <div class="stat-label">Static shaft load</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Class F</div>
+          <div class="stat-label">Insulation rating</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">IP41</div>
+          <div class="stat-label">Protection class</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <svg viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <radialGradient id="bodyG" cx="0.4" cy="0.35">
+            <stop offset="0%" stop-color="#e8eaee"/>
+            <stop offset="50%" stop-color="#9ca3ad"/>
+            <stop offset="100%" stop-color="#4a5260"/>
+          </radialGradient>
+          <radialGradient id="bodyG2" cx="0.5" cy="0.5">
+            <stop offset="0%" stop-color="#b8bdc6"/>
+            <stop offset="100%" stop-color="#5a6270"/>
+          </radialGradient>
+          <linearGradient id="ringG" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#3d434c"/>
+            <stop offset="50%" stop-color="#7a8290"/>
+            <stop offset="100%" stop-color="#2a2f38"/>
+          </linearGradient>
+          <radialGradient id="centerG" cx="0.5" cy="0.5">
+            <stop offset="0%" stop-color="#5878a8"/>
+            <stop offset="100%" stop-color="#1f4788"/>
+          </radialGradient>
+          <radialGradient id="sheaveG" cx="0.5" cy="0.5">
+            <stop offset="0%" stop-color="#3d434c"/>
+            <stop offset="70%" stop-color="#2a2f38"/>
+            <stop offset="100%" stop-color="#1a1d23"/>
+          </radialGradient>
+        </defs>
+
+        <!-- ============ STATIC OUTER BODY ============ -->
+        <g transform="translate(250 300)">
+          <!-- Outer housing -->
+          <circle r="220" fill="url(#bodyG)" stroke="#3d434c" stroke-width="1"/>
+          <circle r="212" fill="none" stroke="rgba(0,0,0,0.1)"/>
+          <circle r="200" fill="none" stroke="rgba(0,0,0,0.06)"/>
+
+          <!-- Mounting bolts (fixed to housing) -->
+          <g fill="#2a2f38">
+            <circle cx="0" cy="-205" r="6"/>
+            <circle cx="205" cy="0" r="6"/>
+            <circle cx="0" cy="205" r="6"/>
+            <circle cx="-205" cy="0" r="6"/>
+            <circle cx="145" cy="-145" r="6"/>
+            <circle cx="145" cy="145" r="6"/>
+            <circle cx="-145" cy="145" r="6"/>
+            <circle cx="-145" cy="-145" r="6"/>
+          </g>
+          <g fill="#1a1d23">
+            <circle cx="0" cy="-205" r="2.5"/>
+            <circle cx="205" cy="0" r="2.5"/>
+            <circle cx="0" cy="205" r="2.5"/>
+            <circle cx="-205" cy="0" r="2.5"/>
+            <circle cx="145" cy="-145" r="2.5"/>
+            <circle cx="145" cy="145" r="2.5"/>
+            <circle cx="-145" cy="145" r="2.5"/>
+            <circle cx="-145" cy="-145" r="2.5"/>
+          </g>
+
+          <!-- Inner casing -->
+          <circle r="180" fill="url(#bodyG2)"/>
+          <circle r="172" fill="none" stroke="rgba(0,0,0,0.15)"/>
+
+          <!-- Brake assembly (static) -->
+          <circle r="160" fill="url(#ringG)"/>
+          <circle r="155" fill="none" stroke="rgba(0,0,0,0.2)"/>
+
+          <!-- Highlight on housing (static, light source fixed) -->
+          <ellipse cx="-70" cy="-80" rx="80" ry="40" fill="rgba(255,255,255,0.12)" transform="rotate(-25)"/>
+        </g>
+
+        <!-- ============ ROTATING SHEAVE — SVG-NATIVE ANIMATION ============ -->
+        <g>
+          <!-- Sheave rotates around (250, 300) using SVG's animateTransform -->
+          <g>
+            <animateTransform
+              attributeName="transform"
+              attributeType="XML"
+              type="rotate"
+              from="0 250 300"
+              to="360 250 300"
+              dur="20s"
+              repeatCount="indefinite"/>
+
+            <g transform="translate(250 300)">
+              <!-- Sheave outer rim -->
+              <circle r="135" fill="url(#sheaveG)"/>
+
+              <!-- Concentric grooves -->
+              <g fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="0.8">
+                <circle r="128"/><circle r="120"/><circle r="112"/><circle r="104"/>
+                <circle r="96"/><circle r="88"/><circle r="80"/><circle r="72"/>
+              </g>
+              <g fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5">
+                <circle r="124"/><circle r="116"/><circle r="108"/><circle r="100"/>
+                <circle r="92"/><circle r="84"/><circle r="76"/>
+              </g>
+
+              <!-- Visible rotation markers: asymmetric features on the sheave face -->
+              <!-- A few brighter highlight slashes that catch the eye as they rotate -->
+              <g opacity="0.55">
+                <path d="M -120 -40 L -75 -60 L -70 -55 L -115 -35 Z" fill="rgba(255,255,255,0.18)"/>
+                <path d="M 90 70 L 125 50 L 128 55 L 93 75 Z" fill="rgba(255,255,255,0.12)"/>
+              </g>
+
+              <!-- Spoke marks on each "quadrant" - dark notches that visibly rotate -->
+              <g stroke="rgba(0,0,0,0.35)" stroke-width="2" stroke-linecap="round">
+                <line x1="0" y1="-128" x2="0" y2="-105"/>
+                <line x1="90.5" y1="-90.5" x2="74" y2="-74"/>
+                <line x1="128" y1="0" x2="105" y2="0"/>
+                <line x1="90.5" y1="90.5" x2="74" y2="74"/>
+                <line x1="0" y1="128" x2="0" y2="105"/>
+                <line x1="-90.5" y1="90.5" x2="-74" y2="74"/>
+                <line x1="-128" y1="0" x2="-105" y2="0"/>
+                <line x1="-90.5" y1="-90.5" x2="-74" y2="-74"/>
+              </g>
+
+              <!-- Hub bolts (rotate with sheave) - 8 bolts, asymmetric pattern -->
+              <g fill="#1a1d23" stroke="#5a6270" stroke-width="0.5">
+                <circle cx="0" cy="-50" r="3.5"/>
+                <circle cx="50" cy="0" r="3.5"/>
+                <circle cx="0" cy="50" r="3.5"/>
+                <circle cx="-50" cy="0" r="3.5"/>
+                <circle cx="35" cy="-35" r="3.5"/>
+                <circle cx="35" cy="35" r="3.5"/>
+                <circle cx="-35" cy="35" r="3.5"/>
+                <circle cx="-35" cy="-35" r="3.5"/>
+              </g>
+
+              <!-- A single accent bolt with a different color to make rotation unambiguous -->
+              <circle cx="0" cy="-50" r="4" fill="#1f4788" opacity="0.9"/>
+              <circle cx="0" cy="-50" r="2" fill="#5878a8"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- ============ STATIC CENTER HUB ============ -->
+        <g transform="translate(250 300)">
+          <circle r="60" fill="#3d434c" stroke="#1a1d23" stroke-width="1"/>
+          <circle r="50" fill="#2a2f38"/>
+          <circle r="22" fill="url(#centerG)"/>
+          <circle r="8" fill="#1a1d23"/>
+        </g>
+      </svg>
+      <div class="hero-photo-label">
+        <span class="dot"></span>
+        <span><strong>WTD2-P</strong> · Permanent Magnet Gearless</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STANDARDS BAR ============ -->
+<div class="standards">
+  <div class="standards-inner">
+    <div class="standards-label">Designed to international elevator standards</div>
+    <div class="standards-list">
+      <div class="standards-item"><span class="code">EN 81</span><span>European elevator safety</span></div>
+      <div class="standards-item"><span class="code">CE</span><span>Compliant configurations</span></div>
+      <div class="standards-item"><span class="code">ISO</span><span>Aligned manufacturing processes</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">About Aston</div>
+      <h2 class="section-title">Built on engineering discipline, not trading.</h2>
+      <p class="section-intro">
+        Aston is focused on one core system: gearless traction. Every machine is selected, configured, and tested against defined specifications before it ships.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-narrative">
+        <p>
+          Our machines are developed through <strong>established manufacturing partners in Asia</strong>, built to defined specifications, and controlled under consistent quality benchmarks. Each unit is configured for the load profile it serves and tested before release.
+        </p>
+        <p>
+          Today, we ship a focused product line — the <strong>WTD2-P permanent magnet gearless platform</strong> — engineered to deliver three things: <strong>stable performance</strong> across the operating envelope, <strong>low vibration and noise</strong> in real installations, and <strong>long operational life</strong> under continuous duty.
+        </p>
+        <p>
+          We are building toward <strong>localized manufacturing in India</strong>, with the goal of delivering globally competitive traction systems with tighter control over quality, lead time, and cost — and a stronger platform to serve the next decade of regional infrastructure.
+        </p>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="num">01</div>
+          <h4>Engineering focus</h4>
+          <p>Traction systems designed for real-world elevator duty cycles, not catalog specifications.</p>
+        </div>
+        <div class="pillar">
+          <div class="num">02</div>
+          <h4>Controlled sourcing</h4>
+          <p>Manufactured through vetted facilities with defined quality standards and inspection protocols.</p>
+        </div>
+        <div class="pillar">
+          <div class="num">03</div>
+          <h4>Scalable platform</h4>
+          <p>Architecture built to expand into full elevator drive systems and controls.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Product</div>
+      <h2 class="section-title">Gearless traction machine.</h2>
+      <p class="section-intro">
+        A focused product line built around a single permanent magnet gearless platform — engineered for residential and small commercial elevator applications, available in two configurations.
+      </p>
+    </div>
+
+    <div class="product-showcase">
+      <div class="ps-photo">
+        <div class="ps-photo-label">
+          <span class="dot"></span>
+          <span>Reference unit · WTD2-P</span>
+        </div>
+        <svg viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <radialGradient id="psBodyG" cx="0.4" cy="0.35">
+              <stop offset="0%" stop-color="#e8eaee"/>
+              <stop offset="50%" stop-color="#9ca3ad"/>
+              <stop offset="100%" stop-color="#4a5260"/>
+            </radialGradient>
+            <radialGradient id="psBodyG2" cx="0.5" cy="0.5">
+              <stop offset="0%" stop-color="#b8bdc6"/>
+              <stop offset="100%" stop-color="#5a6270"/>
+            </radialGradient>
+            <linearGradient id="psRingG" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#3d434c"/>
+              <stop offset="50%" stop-color="#7a8290"/>
+              <stop offset="100%" stop-color="#2a2f38"/>
+            </linearGradient>
+            <radialGradient id="psCenterG" cx="0.5" cy="0.5">
+              <stop offset="0%" stop-color="#5878a8"/>
+              <stop offset="100%" stop-color="#1f4788"/>
+            </radialGradient>
+          </defs>
+
+          <g transform="translate(250 300)">
+            <circle r="220" fill="url(#psBodyG)" stroke="#3d434c" stroke-width="1"/>
+            <circle r="212" fill="none" stroke="rgba(0,0,0,0.1)"/>
+            <circle r="200" fill="none" stroke="rgba(0,0,0,0.06)"/>
+
+            <g fill="#2a2f38">
+              <circle cx="0" cy="-205" r="6"/>
+              <circle cx="205" cy="0" r="6"/>
+              <circle cx="0" cy="205" r="6"/>
+              <circle cx="-205" cy="0" r="6"/>
+              <circle cx="145" cy="-145" r="6"/>
+              <circle cx="145" cy="145" r="6"/>
+              <circle cx="-145" cy="145" r="6"/>
+              <circle cx="-145" cy="-145" r="6"/>
+            </g>
+            <g fill="#1a1d23">
+              <circle cx="0" cy="-205" r="2.5"/>
+              <circle cx="205" cy="0" r="2.5"/>
+              <circle cx="0" cy="205" r="2.5"/>
+              <circle cx="-205" cy="0" r="2.5"/>
+              <circle cx="145" cy="-145" r="2.5"/>
+              <circle cx="145" cy="145" r="2.5"/>
+              <circle cx="-145" cy="145" r="2.5"/>
+              <circle cx="-145" cy="-145" r="2.5"/>
+            </g>
+
+            <circle r="180" fill="url(#psBodyG2)"/>
+            <circle r="172" fill="none" stroke="rgba(0,0,0,0.15)"/>
+            <circle r="160" fill="url(#psRingG)"/>
+            <circle r="155" fill="none" stroke="rgba(0,0,0,0.2)"/>
+            <circle r="135" fill="#2a2f38"/>
+
+            <g fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="0.8">
+              <circle r="128"/><circle r="120"/><circle r="112"/><circle r="104"/>
+              <circle r="96"/><circle r="88"/><circle r="80"/><circle r="72"/>
+            </g>
+            <g fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5">
+              <circle r="124"/><circle r="116"/><circle r="108"/><circle r="100"/>
+              <circle r="92"/><circle r="84"/><circle r="76"/>
+            </g>
+
+            <circle r="60" fill="#3d434c" stroke="#1a1d23" stroke-width="1"/>
+            <circle r="50" fill="#2a2f38"/>
+            <g fill="#1a1d23" stroke="#5a6270" stroke-width="0.5">
+              <circle cx="0" cy="-40" r="3"/>
+              <circle cx="40" cy="0" r="3"/>
+              <circle cx="0" cy="40" r="3"/>
+              <circle cx="-40" cy="0" r="3"/>
+              <circle cx="28" cy="-28" r="3"/>
+              <circle cx="28" cy="28" r="3"/>
+              <circle cx="-28" cy="28" r="3"/>
+              <circle cx="-28" cy="-28" r="3"/>
+            </g>
+            <circle r="22" fill="url(#psCenterG)"/>
+            <circle r="8" fill="#1a1d23"/>
+
+            <ellipse cx="-70" cy="-80" rx="80" ry="40" fill="rgba(255,255,255,0.12)" transform="rotate(-25)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="ps-body">
+        <div class="ps-series">WTD2-P Series</div>
+        <h3 class="ps-name">Permanent Magnet Gearless Traction Machine</h3>
+        <p class="ps-tag">
+          A compact, permanent magnet synchronous machine designed for residential and small commercial elevators. Available in two configurations for different load profiles.
+        </p>
+
+        <div class="config-section">
+          <div class="config-label">Available Configurations</div>
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Capacity</th>
+                <th>Power</th>
+                <th>Current</th>
+                <th>Torque</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="config-name">WTD2-P400-100D</td>
+                <td class="config-cap">400 / 408 kg</td>
+                <td>2.7 kW</td>
+                <td>8 A</td>
+                <td>217 N·m</td>
+              </tr>
+              <tr>
+                <td class="config-name">WTD2-P544-100D</td>
+                <td class="config-cap">544 kg</td>
+                <td>3.6 kW</td>
+                <td>10 A</td>
+                <td>290 N·m</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="config-section" style="margin-bottom: 0;">
+          <div class="config-label">Common Specifications</div>
+          <div class="common-specs">
+            <div class="common-spec">
+              <div class="k">Rated voltage</div>
+              <div class="v">AC 380 V · 50/60 Hz</div>
+            </div>
+            <div class="common-spec">
+              <div class="k">Brake voltage</div>
+              <div class="v">DC 110 V · single coil</div>
+            </div>
+            <div class="common-spec">
+              <div class="k">Static shaft load</div>
+              <div class="v">2500 kg</div>
+            </div>
+            <div class="common-spec">
+              <div class="k">Duty cycle</div>
+              <div class="v">S5 – 40%</div>
+            </div>
+            <div class="common-spec">
+              <div class="k">Main sheave</div>
+              <div class="v">Ø 320 mm</div>
+            </div>
+            <div class="common-spec">
+              <div class="k">Roping</div>
+              <div class="v">4 × Ø8 × 12 · ratio 2:1</div>
+            </div>
+            <div class="common-spec">
+              <div class="k">Groove profile</div>
+              <div class="v">Undercut U · β=90° γ=30°</div>
+            </div>
+            <div class="common-spec">
+              <div class="k">Motor type</div>
+              <div class="v">PM synchronous · 20-pole</div>
+            </div>
+            <div class="common-spec">
+              <div class="k">Rated speed</div>
+              <div class="v">119 rpm · 19.9 Hz</div>
+            </div>
+            <div class="common-spec">
+              <div class="k">Elevator speed</div>
+              <div class="v">1.0 m/s</div>
+            </div>
+            <div class="common-spec">
+              <div class="k">Insulation / Protection</div>
+              <div class="v">Class F · IP41</div>
+            </div>
+            <div class="common-spec">
+              <div class="k">Travelling height</div>
+              <div class="v">≤ 90 m</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#contact" class="ps-cta">Request full datasheet →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ENGINEERING ============ -->
+<section class="engineering" id="engineering">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Engineering</div>
+      <h2 class="section-title">Designed for performance and longevity.</h2>
+      <p class="section-intro">
+        Every Aston traction system is built around four operating principles: efficiency, thermal stability, acoustic control, and mechanical reliability under continuous duty.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature">
+        <div class="num">01</div>
+        <h4>Permanent magnet architecture</h4>
+        <p>NdFeB magnetic poles deliver high efficiency with reduced energy consumption and improved torque characteristics across the operating range.</p>
+      </div>
+      <div class="feature">
+        <div class="num">02</div>
+        <h4>Precision sheave design</h4>
+        <p>Optimized groove geometry for rope life and traction stability under varied load and acceleration profiles.</p>
+      </div>
+      <div class="feature">
+        <div class="num">03</div>
+        <h4>Thermal management</h4>
+        <p>Designed to maintain performance under continuous duty cycles, with Class F insulation rated for tropical service conditions.</p>
+      </div>
+      <div class="feature">
+        <div class="num">04</div>
+        <h4>Low-noise operation</h4>
+        <p>Engineered for smooth rotation and reduced vibration in real installations, supporting acoustic targets in occupied buildings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GLOBAL PRESENCE ============ -->
+<section class="global" id="global">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Global Presence</div>
+      <h2 class="section-title">Built globally. Expanding locally.</h2>
+      <p class="section-intro">
+        Aston operates through a global supply chain with manufacturing partners in Asia, ensuring consistent product availability and competitive pricing. Our next phase establishes manufacturing capability in India.
+      </p>
+    </div>
+
+    <div class="global-grid">
+      <div class="location-card">
+        <div class="location-status active">Active</div>
+        <h3>Asia Manufacturing Partnership</h3>
+        <div class="region">China · Operational</div>
+        <p>
+          Production runs through vetted manufacturing facilities aligned with Aston specifications and inspection protocols. Every shipment is configured, tested, and quality-controlled before release under Aston accountability.
+        </p>
+        <div class="location-meta">
+          <div class="item">
+            <div class="k">Function</div>
+            <div class="v">Manufacturing &amp; QC</div>
+          </div>
+          <div class="item">
+            <div class="k">Status</div>
+            <div class="v">Currently shipping</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="location-card">
+        <div class="location-status planned">Planned</div>
+        <h3>India Manufacturing</h3>
+        <div class="region">India · Roadmap</div>
+        <p>
+          Localized manufacturing in India is the next phase of the platform, focused on tighter control over quality, lead time, and cost — and on supporting the long-term growth of regional infrastructure demand.
+        </p>
+        <div class="location-meta">
+          <div class="item">
+            <div class="k">Function</div>
+            <div class="v">Manufacturing &amp; engineering</div>
+          </div>
+          <div class="item">
+            <div class="k">Status</div>
+            <div class="v">In planning</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISION ============ -->
+<section class="vision" id="vision">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Forward Direction</div>
+      <h2 class="section-title">Building the next layer of elevator systems.</h2>
+      <p class="section-intro">
+        Aston is focused on expanding beyond traction machines into a broader ecosystem of elevator components — with the goal of becoming a reliable system supplier for modern elevator companies.
+      </p>
+    </div>
+
+    <div class="roadmap">
+      <div class="roadmap-item current">
+        <div class="roadmap-phase">Current</div>
+        <h4 class="roadmap-title">Gearless traction systems</h4>
+        <p class="roadmap-desc">Full range of permanent magnet machines for passenger and heavy-duty elevator applications.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-phase">Near-term</div>
+        <h4 class="roadmap-title">India manufacturing</h4>
+        <p class="roadmap-desc">Localized production for tighter control over quality, lead time, and supply consistency.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-phase">Mid-term</div>
+        <h4 class="roadmap-title">Drive &amp; control systems</h4>
+        <p class="roadmap-desc">Integrated traction-and-drive solutions, expanding Aston's role from component to subsystem supplier.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Partnership</div>
+      <h2 class="section-title">Partner with Aston.</h2>
+      <p class="section-intro">
+        We work with elevator companies, installers, and distributors looking for reliable traction solutions. For product details, pricing, or technical discussions, reach out to our team.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>
+          Every inquiry is reviewed by our technical commercial team. We will share specifications, lead times, and pricing scoped to your geography and order profile.
+        </p>
+
+        <div class="contact-channels">
+          <div class="ch-item">
+            <span class="ch-key">General</span>
+            <span class="ch-val"><a href="mailto:info@astontraction.com">info@astontraction.com</a></span>
+          </div>
+          <div class="ch-item">
+            <span class="ch-key">Partnerships</span>
+            <span class="ch-val"><a href="mailto:partners@astontraction.com">partners@astontraction.com</a></span>
+          </div>
+          <div class="ch-item">
+            <span class="ch-key">Technical</span>
+            <span class="ch-val"><a href="mailto:engineering@astontraction.com">engineering@astontraction.com</a></span>
+          </div>
+          <div class="ch-item">
+            <span class="ch-key">Web</span>
+            <span class="ch-val"><a href="https://astontraction.com">astontraction.com</a></span>
+          </div>
+          <div class="ch-item">
+            <span class="ch-key">Operations</span>
+            <span class="ch-val">India &amp; China</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="form" onsubmit="event.preventDefault(); alert('Thank you. Our team will respond shortly.');">
+        <h4>Submit an inquiry</h4>
+        <div class="form-intro">Tell us about your operation. Required fields are marked.</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Name <span class="req">*</span></label>
+            <input class="form-input" type="text" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Company <span class="req">*</span></label>
+            <input class="form-input" type="text" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Email <span class="req">*</span></label>
+            <input class="form-input" type="email" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Country</label>
+            <input class="form-input" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Requirement type</label>
+          <select class="form-select">
+            <option>Elevator OEM / Manufacturer</option>
+            <option>Distributor / Reseller</option>
+            <option>Installer / Service company</option>
+            <option>Builder / Infrastructure</option>
+            <option>Engineering consultant</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Capacity range, geography, expected volumes, or anything else we should know."></textarea>
+        </div>
+        <button class="form-submit" type="submit">Submit Inquiry →</button>
+        <div class="form-note">By submitting, you agree to be contacted by Aston regarding your inquiry.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="mark">ASTON</span>
+          <span class="tag">Gearless Traction Systems</span>
+        </a>
+        <p>
+          Permanent magnet gearless traction machines for elevator OEMs, installers, and distributors. Manufactured to international standards.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#products">WTD2-P400-100D</a></li>
+          <li><a href="#products">WTD2-P544-100D</a></li>
+          <li><a href="#engineering">Engineering</a></li>
+          <li><a href="#contact">Datasheet Request</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#engineering">Engineering</a></li>
+          <li><a href="#global">Global Presence</a></li>
+          <li><a href="#vision">Forward Direction</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="#contact">Become a Partner</a></li>
+          <li><a href="mailto:info@astontraction.com">General Inquiries</a></li>
+          <li><a href="mailto:engineering@astontraction.com">Technical Support</a></li>
+          <li><a href="mailto:partners@astontraction.com">Distributor Program</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© Aston. All rights reserved.</div>
+      <div>astontraction.com</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1094,11 +1094,32 @@
     border-radius: 2px;
   }
   .form-submit:hover { background: var(--accent); }
+  .form-submit:disabled { background: var(--ink-3); cursor: not-allowed; }
   .form-note {
     font-size: 12px;
     color: var(--ink-3);
     margin-top: 16px;
     line-height: 1.5;
+  }
+  .form-status {
+    margin-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    display: none;
+    padding: 12px 14px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+  }
+  .form-status.show { display: block; }
+  .form-status.success {
+    background: #f0f8f1;
+    border-color: #c6e3c8;
+    color: #1f6b25;
+  }
+  .form-status.error {
+    background: #fdf3f1;
+    border-color: #f0c4bd;
+    color: #9c2a1a;
   }
 
   /* ============ FOOTER ============ */
@@ -1863,32 +1884,32 @@
         </div>
       </div>
 
-      <form class="form" onsubmit="event.preventDefault(); alert('Thank you. Our team will respond shortly.');">
+      <form class="form" id="inquiryForm" novalidate>
         <h4>Submit an inquiry</h4>
         <div class="form-intro">Tell us about your operation. Required fields are marked.</div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Name <span class="req">*</span></label>
-            <input class="form-input" type="text" required>
+            <label class="form-label" for="f-name">Name <span class="req">*</span></label>
+            <input class="form-input" id="f-name" name="name" type="text" required autocomplete="name">
           </div>
           <div class="form-group">
-            <label class="form-label">Company <span class="req">*</span></label>
-            <input class="form-input" type="text" required>
+            <label class="form-label" for="f-company">Company <span class="req">*</span></label>
+            <input class="form-input" id="f-company" name="company" type="text" required autocomplete="organization">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Email <span class="req">*</span></label>
-            <input class="form-input" type="email" required>
+            <label class="form-label" for="f-email">Email <span class="req">*</span></label>
+            <input class="form-input" id="f-email" name="email" type="email" required autocomplete="email">
           </div>
           <div class="form-group">
-            <label class="form-label">Country</label>
-            <input class="form-input" type="text">
+            <label class="form-label" for="f-country">Country</label>
+            <input class="form-input" id="f-country" name="country" type="text" autocomplete="country-name">
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Requirement type</label>
-          <select class="form-select">
+          <label class="form-label" for="f-type">Requirement type</label>
+          <select class="form-select" id="f-type" name="type">
             <option>Elevator OEM / Manufacturer</option>
             <option>Distributor / Reseller</option>
             <option>Installer / Service company</option>
@@ -1898,10 +1919,11 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">Message</label>
-          <textarea class="form-textarea" placeholder="Capacity range, geography, expected volumes, or anything else we should know."></textarea>
+          <label class="form-label" for="f-message">Message</label>
+          <textarea class="form-textarea" id="f-message" name="message" placeholder="Capacity range, geography, expected volumes, or anything else we should know."></textarea>
         </div>
-        <button class="form-submit" type="submit">Submit Inquiry →</button>
+        <button class="form-submit" type="submit" id="f-submit">Submit Inquiry →</button>
+        <div class="form-status" id="f-status" role="status" aria-live="polite"></div>
         <div class="form-note">By submitting, you agree to be contacted by Aston regarding your inquiry.</div>
       </form>
     </div>
@@ -1986,6 +2008,47 @@
       }
     });
   });
+
+  // Inquiry form → Google Apps Script endpoint
+  const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz1uzCbFnpp1q3fcvrYUZQiNCHXk1FA7YeRHE_IshdLDsnvmo_f83QJ-YoohzRu5i1nNQ/exec';
+  const inquiryForm = document.getElementById('inquiryForm');
+  if (inquiryForm) {
+    const submitBtn = document.getElementById('f-submit');
+    const statusEl = document.getElementById('f-status');
+    const setStatus = (kind, msg) => {
+      statusEl.className = 'form-status show ' + kind;
+      statusEl.textContent = msg;
+    };
+    inquiryForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // Native validation (HTML5 required + email)
+      if (!inquiryForm.checkValidity()) {
+        inquiryForm.reportValidity();
+        return;
+      }
+      submitBtn.disabled = true;
+      const originalLabel = submitBtn.textContent;
+      submitBtn.textContent = 'Sending…';
+      statusEl.className = 'form-status';
+      try {
+        // mode: 'no-cors' — Apps Script doesn't return CORS headers,
+        // but the POST is still delivered. Response is opaque, so we
+        // treat the absence of a network error as success.
+        await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: new FormData(inquiryForm),
+        });
+        inquiryForm.reset();
+        setStatus('success', 'Thank you. Your inquiry has been received — our team will respond shortly.');
+      } catch (err) {
+        setStatus('error', 'Could not send right now. Please try again, or email info@astontraction.com directly.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    });
+  }
 </script>
 
 </body>
